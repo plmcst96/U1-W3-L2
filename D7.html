@@ -106,8 +106,10 @@
       */
 
       const changePcontent = function () {
-        const newP = document.querySelector("div p")
-        newP.innerText = "Beh direi che piano piano ci stiamo riusciamo ahahah"
+        const newP = document.querySelectorAll("div p")
+        newP.forEach((p) => {
+          p.innerText = "Ci stiamo riusciamo ahahah :)!"
+        })
       }
       changePcontent()
 
@@ -138,7 +140,7 @@
     */
 
       const addParagraph = function () {
-        const tagP = document.getElementsByTagName("h2")[0]
+        const tagP = document.getElementsByTagName("div")[0]
         const anotherP = document.createElement("p")
         anotherP.innerText = "Non ti fermare continua a provare! :)"
         tagP.appendChild(anotherP)
