@@ -63,7 +63,11 @@
 
     <div>
       <p>Anche questo testo è per gli esercizi</p>
-      <h2 id="changeMyColor" style="color: #ff00d6">
+      <h2
+        id="changeMyColor"
+        style="color: #ff00d6"
+        onclick="changeColorWithRandom()"
+      >
         Apri questa pagina con VSCode per scoprire gli esercizi
       </h2>
     </div>
@@ -82,8 +86,8 @@
     </footer>
     <script>
       /* ESERCIZIO 1
-       Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
-    */
+         Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
+      */
 
       const changeTitle = function () {
         const newTitle = document.getElementsByTagName("h1")[0]
@@ -92,8 +96,8 @@
       changeTitle()
 
       /* ESERCIZIO 2
-       Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
-    */
+         Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
+      */
 
       const addClassToTitle = function () {
         const newClass = document.getElementsByTagName("h1")[0]
@@ -102,8 +106,8 @@
       addClassToTitle()
 
       /* ESERCIZIO 3
-       Scrivi una funzione per che cambi il testo dei p figli di un div
-      */
+         Scrivi una funzione per che cambi il testo dei p figli di un div
+        */
 
       const changePcontent = function () {
         const newP = document.querySelectorAll("div p")
@@ -114,8 +118,8 @@
       changePcontent()
 
       /* ESERCIZIO 4
-       Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
-      */
+         Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
+        */
 
       const changeUrls = function () {
         const anchorInDiv = document.querySelector("div > a")
@@ -124,8 +128,8 @@
       changeUrls()
 
       /* ESERCIZIO 5
-       Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
-    */
+         Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
+      */
 
       const addToTheSecond = function () {
         const lis = document.getElementById("secondList")
@@ -136,8 +140,8 @@
       addToTheSecond()
 
       /* ESERCIZIO 6
-       Scrivi una funzione che aggiunga un secondo paragrafo al primo div
-    */
+         Scrivi una funzione che aggiunga un secondo paragrafo al primo div
+      */
 
       const addParagraph = function () {
         const tagP = document.getElementsByTagName("div")[0]
@@ -148,8 +152,8 @@
       addParagraph()
 
       /* ESERCIZIO 7
-       Scrivi una funzione che faccia scomparire la prima lista non ordinata
-    */
+         Scrivi una funzione che faccia scomparire la prima lista non ordinata
+      */
 
       const hideFirstUl = function () {
         const firstUlList = document.getElementById("firstList")
@@ -157,32 +161,36 @@
       }
       hideFirstUl()
 
-      /* ESERCIZIO 8 
-       Scrivi una funzione che renda verde il background di ogni lista non ordinata
-      */
+      /* ESERCIZIO 8
+         Scrivi una funzione che renda verde il background di ogni lista non ordinata
+        */
 
       const paintItGreen = function () {
         const background = document.getElementsByTagName("ul")
-        for (let i = 0; i < background.length; i++) {
-          background[i].style.backgroundColor = "green"
-        }
+        // for (let i = 0; i < background.length; i++) {
+        //   background[i].style.backgroundColor = "green"
+        // }
+        const backArr = Array.from(background)
+        backArr.forEach((ul) => {
+          ul.style.backgroundColor = "green"
+        })
       }
       paintItGreen()
 
       /* ESERCIZIO 9
-       Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
-      */
+         Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
+        */
 
       const makeItClickable = function () {
         const click = document.getElementsByTagName("h1")[0]
-        if (click.innerText.length > 0) {
-          click.innerText = click.innerText.slice(0, -1)
-        }
+        // if (click.innerText.length > 0) {
+        click.innerText = click.innerText.slice(0, -1)
+        // }
       }
 
       /* ESERCIZIO 10
-       Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
-      */
+         Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
+        */
 
       const revealFooterLink = function () {
         const foot = document.getElementsByTagName("footer")[0]
@@ -192,76 +200,150 @@
       }
 
       /* ESERCIZIO 11
-       Crea una funzione che crei una tabella nell'elemento con id "tableArea". 
-       La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
-    */
+         Crea una funzione che crei una tabella nell'elemento con id "tableArea".
+         La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
+      */
 
       function generateTable() {
         const tabArea = document.getElementById("tableArea")
-        // creates a <table> element and a <tbody> element
-        const tbl = document.createElement("table")
-        const tblBody = document.createElement("tbody")
 
-        // creating all cells
-        for (let i = 0; i < 5; i++) {
-          // creates a table row
-          const row = document.createElement("tr")
+        const table = document.createElement("table")
+        table.style.width = "100%"
+        const firstTr = document.createElement("tr")
 
-          for (let j = 0; j < 4; j++) {
-            // Create a <td> element and a text node, make the text
-            // node the contents of the <td>, and put the <td> at
-            // the end of the table row
-            const cell = document.createElement("td")
-            if (j === 0) {
-              cell.innerText = "immagine"
-            } else if (j === 1) {
-              cell.innerText = "nome prodotto"
-            } else if (j === 2) {
-              cell.innerText = "quantità"
-            } else if (j === 3) {
-              cell.innerText = "prezzo"
-            }
+        const th1 = document.createElement("th")
+        th1.innerText = "Immagine"
+        const th2 = document.createElement("th")
+        th2.innerText = "Nome prodotto"
+        const th3 = document.createElement("th")
+        th3.innerText = "Quantità"
+        const th4 = document.createElement("th")
+        th4.innerText = "Prezzo"
 
-            row.appendChild(cell)
-          }
+        const images = [
+          "https://statics.quattroruote.it/content/dam/quattroruote/it/foto/2021/04/14/audi_q4_e_tron_2021_/gallery/rsmall/2021-Audi-Q4-e-tron-01.jpg",
+          "https://i2.res.24o.it/stream/assets/img/Editrice/ILSOLE24ORE/ILSOLE24ORE/Online/MediaCenter/Gallery/2022/03/renault-austral/I71A0953_Edit%20NEW-kzfG--900x675@IlSole24Ore-Web.jpg",
+          "https://statics.cedscdn.it/photos/MED_HIGH/16/34/3531634_1619_maserati_ghibli_s_my18_granlusso_154_.jpg",
+          "https://cdn.motor1.com/images/mgl/xqq24z/s3/novitec-ferrari-sf90-stradale-2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/18/Lamborghini_Sian_at_IAA_2019_IMG_0332.jpg",
+        ]
 
-          // add the row to the end of the table body
-          tblBody.appendChild(row)
+        firstTr.appendChild(th1)
+        firstTr.appendChild(th2)
+        firstTr.appendChild(th3)
+        firstTr.appendChild(th4)
+        table.appendChild(firstTr)
+
+        for (let i = 0; i < images.length; i++) {
+          const newRow = document.createElement("tr")
+          const td1 = document.createElement("td")
+          td1.innerHTML = `<img src="${images[i]}" alt="Cars" width="200"/>`
+          const td2 = document.createElement("td")
+          td2.innerText = "Auto"
+          const td3 = document.createElement("td")
+          td3.innerText = "1"
+          const td4 = document.createElement("td")
+          td4.innerText = Math.floor(Math.random() * 12000) + "€"
+
+          newRow.appendChild(td1)
+          newRow.appendChild(td2)
+          newRow.appendChild(td3)
+          newRow.appendChild(td4)
+          table.appendChild(newRow)
         }
-
-        // put <tbody> in <table>
-        tbl.appendChild(tblBody)
-        // appends <table> into <body>
-
-        tabArea.appendChild(tbl)
-        // setta i bordi
-        tbl.setAttribute("border", "1")
+        tabArea.appendChild(table)
       }
       generateTable()
 
       /* ESERCIZIO 12
-       Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
-    */
+         Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
+      */
 
-      const addRow = function () {}
+      const addRow = function (img, name, qty, price) {
+        const tab2 = document.getElementsByTagName("table")[0]
+
+        const newTr = document.createElement("tr")
+
+        const newtd1 = document.createElement("td")
+        newtd1.innerHTML = `<img src="${img}" alt="Cars" width="200"/>`
+        const newtd2 = document.createElement("td")
+        newtd2.innerText = name
+        const newtd3 = document.createElement("td")
+        newtd3.innerText = qty
+        const newtd4 = document.createElement("td")
+        newtd4.innerText = price + "€"
+
+        newTr.appendChild(newtd1)
+        newTr.appendChild(newtd2)
+        newTr.appendChild(newtd3)
+        newTr.appendChild(newtd4)
+        tab2.appendChild(newTr)
+      }
+      addRow(
+        "https://carsguide-res.cloudinary.com/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_large/v1/editorial/story/hero_image/Porsche%20Macan%20Render.jpg",
+        "Porche",
+        1,
+        80900
+      )
 
       /* ESERCIZIO 14
-      Crea una funzione che nasconda le immagini della tabella quando eseguita
-    */
+        Crea una funzione che nasconda le immagini della tabella quando eseguita
+      */
 
-      const hideAllImages = function () {}
+      const hideAllImages = function () {
+        const images = document.querySelectorAll("img")
+        images.forEach((image) => {
+          image.style.display = "none"
+        })
+      }
+      const positionB = document.querySelector("table")
+      const button = document.createElement("button")
+      button.innerHTML = `<button onclick="hideAllImages()">CLICK TO HIDE!<button/>`
+
+      positionB.appendChild(button)
+      // hideAllImages()
 
       /* EXTRA ESERCIZIO 15
-      Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
-    */
+        Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
+      */
 
-      const changeColorWithRandom = function () {}
+      const changeColorWithRandom = function () {
+        const color = document.getElementById("changeMyColor")
+        const red = Math.floor(Math.random() * 256)
+        const green = Math.floor(Math.random() * 256)
+        const blue = Math.floor(Math.random() * 256)
+
+        color.style.color = `rgb(${red}, ${green}, ${blue})`
+      }
 
       /* EXTRA ESERCIZIO 16
-      Crea una funzione che elimini le vocali da ogni elemento testuale della pagina (puoi aiutarti con i nuovi metodi degli array di ES6)
-    */
+        Crea una funzione che elimini le vocali da ogni elemento testuale della pagina (puoi aiutarti con i nuovi metodi degli array di ES6)
+      */
 
-      const deleteVowels = function () {}
+      const deleteVowels = function () {
+        const selectAllElements = document.querySelectorAll(
+          "h1, h2, h3, p, li, th, td"
+        )
+        selectAllElements.forEach(
+          (el) =>
+            (el.innerText = [...el.innerText]
+              .filter((vocal) => {
+                return (
+                  vocal === "a" &&
+                  vocal === "e" &&
+                  vocal === "i" &&
+                  vocal === "o" &&
+                  vocal === "u" &&
+                  vocal === "A" &&
+                  vocal === "E" &&
+                  vocal === "I" &&
+                  vocal === "O" &&
+                  vocal === "U"
+                )
+              })
+              .join(""))
+        )
+      }
     </script>
   </body>
 </html>
